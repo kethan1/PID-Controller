@@ -13,7 +13,7 @@ class PID {
         
         time_t sTime;
 
-        PID(double P, double I = 0, double D = 0, bool debug_value = true, std::string file = "PIDvars.csv");
+        PID(double P = 1, double I = 0, double D = 0, bool debug_value = true, std::string file = "PIDvars.csv");
         double update(double target, double current);
         void reset();
         void close();

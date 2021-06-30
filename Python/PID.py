@@ -3,7 +3,7 @@ import time
 
 
 class PID:
-    def __init__(self, P=1, I=0, D=0, debug=True, file="PIDvars.csv"):
+    def __init__(self, P: int = 1, I: int = 0, D: int = 0, debug: bool = True, file: str = "PIDvars.csv") -> None:
         self.P = P
         self.I = I
         self.D = D
@@ -20,7 +20,7 @@ class PID:
             ])
         self.first = True
 
-    def update(self, target, current):
+    def update(self, target: int, current: int) -> None:
         error = target - current
         self.iAccumulator += error
         if self.first:
@@ -46,9 +46,9 @@ class PID:
 
         return output
 
-    def reset(self):
+    def reset(self) -> None:
         self.first = True
 
-    def close(self):
+    def close(self) -> None:
         if self.debug:
             self.fileOutput.close()

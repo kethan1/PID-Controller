@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import csv
 import sys
 
-filename = "rev_per_second.csv"
+filename = "PIDvars.csv"
 if sys.argv[1:]:
     filename = sys.argv[1]
 

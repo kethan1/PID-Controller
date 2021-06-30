@@ -26,7 +26,10 @@ export default class PID {
         this.prevError = 0;
         this.first = true;
         this.file = file;
-        fs.writeFileSync(this.file, `Equation,I Accumulator,Error,Prev Error,P With Error,I with I Accumulator,D with Prev Error,Setpoint,Time${os.EOL}`);
+        if (this.debug) {
+            fs.writeFileSync(this.file, `Equation,I Accumulator,Error,Prev Error,P With Error,I with I Accumulator,D with Prev Error,Setpoint,Time${os.EOL}`);
+        }
+        
     }
 
     update(target: number, current: number) {
@@ -39,18 +42,20 @@ export default class PID {
             this.sTime = new Date().getTime() / 1000;
         }
         let output = (this.P * error) + (this.iAccumulator * this.I) + ((error - this.prevError) * this.D);
-        fs.appendFileSync(this.file, [
-            output,
-            this.iAccumulator,
-            error,
-            this.prevError,
-            this.P * error,
-            this.I * this.iAccumulator,
-            this.D * (error-this.prevError),
-            target,
-            current,
-            (new Date().getTime() / 1000) - this.sTime
-        ].join(",") + os.EOL);
+        if (this.debug) {
+            fs.appendFileSync(this.file, [
+                output,
+                this.iAccumulator,
+                error,
+                this.prevError,
+                this.P * error,
+                this.I * this.iAccumulator,
+                this.D * (error-this.prevError),
+                target,
+                current,
+                (new Date().getTime() / 1000) - this.sTime
+            ].join(",") + os.EOL);
+        }
         return output;
     }
 

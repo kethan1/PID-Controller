@@ -3,4 +3,4 @@ A [PID Controller](https://wikipedia.org/wiki/PID_controller) written in [Python
 
 Issues and Pull Requests are welcome!
 
-To add another language to this repo, the languages must have OOP features (except C).
+To add another language to this repo, the language must have OOP features (except C).
